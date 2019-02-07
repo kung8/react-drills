@@ -1,18 +1,44 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
 
 class App extends Component {
+  constructor (){
+    super()
+    this.state = {
+        films:[]
+    }
+  }
+componentDidMount () {
+  axios.get("https://swapi.co/api/people/1/").then(response =>{
+  console.log(response)
+  this.setState({
+      films:response.data.films
+  })
+  console.log(this.state.films)
+  })  
+}
+
+// putFilms () {
+// axios.put("https://swapi.co/api/people/1/").then(response=>{
+//   console.log(response)
+//   this.setState({
+//     films:response.data.films
+//     })
+//   })
+// }
   render() {
+    // let {films} = this.state
+    // console.log(this.state)
+    let starWarsFilms = this.state.films.map((movie,i)=>{
+        return (<h2 key={i}>{movie}</h2>)
+    })
+
+
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+          <h1>Films:</h1>
+          {starWarsFilms}
       </div>
     );
   }

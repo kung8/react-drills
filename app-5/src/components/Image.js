@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import './App.css';
 
-class App extends Component {
-  render() {
+export function Image (props) {
+  
     return (
       <div className="App">
-     
+       <img src={props.picture}/>
       </div>
     );
   }
-}
 
-export default App;
+
+export default Image;
